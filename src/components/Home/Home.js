@@ -6,7 +6,7 @@ export default class Home extends Component {
         return (
             <div>
                 <p>Hello, friends!</p>
-                <p>Go to <Link to={'/about'}>About</Link> page.</p>
+                <p>Go to <Link to={'/register'}>register</Link> page or <Link to={'/login'}>login</Link> if you already have an account</p>
             </div>
         )
     }

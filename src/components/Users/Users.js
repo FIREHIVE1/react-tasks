@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 import axios from 'axios';
 import UserRow from "./UserRow";
 import Layout from '../Misc/Layout';
@@ -104,7 +104,7 @@ export default class Users extends Component {
 
         return (
             <Layout>
-                <Button color="primary" onClick={this._add}>Add user</Button>
+                <Button className={'addbtn'} color="primary" onClick={this._add}>Add user</Button>
                 <Modal isOpen={this.state.open} toggle={this._toggle}>
                     <ModalHeader toggle={this._toggle}>{id ? 'Edit user' : 'Add user'}</ModalHeader>
                     <ModalBody>
@@ -156,7 +156,7 @@ export default class Users extends Component {
                     </ModalFooter>
                 </Modal>
                 <Row>
-                    <Col xs={1}>#</Col>
+                    <Col xs={1}>id</Col>
                     <Col xs={3}>Name</Col>
                     <Col xs={4}>Email</Col>
                     <Col xs={2}>Role</Col>

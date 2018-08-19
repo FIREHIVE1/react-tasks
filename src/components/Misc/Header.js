@@ -48,7 +48,7 @@ export default class Header extends Component {
             <Fragment>
                 <div>
                     <Navbar color="dark" dark expand="md">
-                        <NavbarBrand href="/">Home</NavbarBrand>
+                        <NavbarBrand href="/">Tasks</NavbarBrand>
                         <NavbarToggler onClick={this.toggle} />
                         <Collapse isOpen={this.state.isOpen} navbar>
                             <Nav className="ml-auto" navbar>

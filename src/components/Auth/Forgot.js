@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import {Button,Container,FormGroup,Form,Label,Input} from 'reactstrap';
 import '../../css/Auth.css';
-import {Link} from "react-router-dom";
 
 export default class Forgot extends Component {
     state = {

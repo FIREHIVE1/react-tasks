@@ -26,3 +26,17 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.menu-item a {
+  text-decoration: none;
+  color: #fff;
+  display: block;
+  padding: 10px 10px;
+  height: 100%;
+  transition: .3s;
+}
+.menu-item a:hover, .menu-item a:active, .menu-item a:visited {
+  text-decoration: none;
+  color: white;
+  background: #0069d9;
+}

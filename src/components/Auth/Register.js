@@ -48,7 +48,7 @@ export default class Register extends Component {
                         </FormGroup>
                         <FormGroup>
                             <Label for="email">Email</Label>
-                            <Input type={'text'} name={'email'} value={email} placeholder="Email"  onChange={this._onChange}/>
+                            <Input type={'email'} name={'email'} value={email} placeholder="Email"  onChange={this._onChange}/>
                         </FormGroup>
                         <FormGroup>
                             <Label for="password">Password</Label>

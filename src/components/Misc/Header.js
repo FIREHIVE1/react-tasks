@@ -1,5 +1,5 @@
 import React, {Component,Fragment} from 'react';
-import {Redirect} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import {Button} from 'reactstrap';
 import {
     Collapse,
@@ -52,10 +52,17 @@ export default class Header extends Component {
                         <NavbarToggler onClick={this.toggle} />
                         <Collapse isOpen={this.state.isOpen} navbar>
                             <Nav className="ml-auto" navbar>
-                                <NavItem>
-                                    <div className={'header'}>
-                                        <Button color="danger" size="sm" onClick={this._logout}>Logout</Button>
-                                    </div>
+                                <NavItem className={'menu-item'}>
+                                    <Link to={"/"}>Home</Link>
+                                </NavItem>
+                                <NavItem className={'menu-item'}>
+                                    <Link to={"users"}>Users</Link>
+                                </NavItem>
+                                <NavItem className={'menu-item'}>
+                                    <Link to={"tasks"}>Tasks</Link>
+                                </NavItem>
+                                <NavItem className={'menu-item'}>
+                                    <Link onClick={this._logout} to={""}>Logout</Link>
                                 </NavItem>
                             </Nav>
                         </Collapse>

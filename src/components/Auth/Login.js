@@ -40,7 +40,7 @@ export default class Login extends Component {
         return (
             <Container className={'cont'}>
             <div>
-                <Form>
+                <Form className={'sms'}>
                     <h2>Login</h2>
                     <FormGroup>
                         <Label for="email">Email</Label>
@@ -51,7 +51,7 @@ export default class Login extends Component {
                         <Input type={'password'} name={'password'} value={password} placeholder="Password"  onChange={this._onChange}/>
                     </FormGroup>
                         <Button className={'authbtn'}  color="primary" onClick={this._login}>Login</Button>
-                    <p><Link to={'/forgot'}>Forgot password?</Link></p>
+                    <p><Link to={'/forgot-password'}>Forgot password?</Link></p>
                     <p>Don't have an account? Please <Link to={'/register'}>Register.</Link></p>
                 </Form>
             </div>

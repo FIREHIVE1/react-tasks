@@ -1,15 +1,16 @@
 import React, {Component, Fragment} from 'react';
 import axios from 'axios';
-import {Button, FormGroup, Input, Label} from "reactstrap";
+import {Button,Container,FormGroup,Form,Label,Input} from 'reactstrap';
+import '../../css/Auth.css';
 import {Link} from "react-router-dom";
 
-export default class Forgot extends Component {
+export default class ForgotPassword extends Component {
     state = {
         showCode: false,
         email: '',
         code: '',
-        password: ''
-    };
+        password: '',
+     };
 
     _onChange = (e) => {
         const {name, value} = e.target;
@@ -60,34 +61,18 @@ export default class Forgot extends Component {
 
         return (
             <Fragment>
-                <FormGroup>
-                    <Label for="exampleEmail">Email</Label>
-                    <Input type="email" name="email" id="exampleEmail" value={email} onChange={this._onChange}/>
-                </FormGroup>
-                <Button color="primary" onClick={this._forgot}>Reset Password</Button>
-                <Link to={'login'}>Login</Link>
-                <span onClick={() => this._changeRender(true)}>Have a code?</span>
+                <Container className={'changepas'}>
+                    <h2>Forgot Password</h2>
+                    <FormGroup>
+                        <Label for="exampleEmail">Please enter your email and we will send you a code to reset your password.</Label>
+                        <Input type="email" name="email" id="exampleEmail" placeholder="Email" value={email} onChange={this._onChange}/>
+                    </FormGroup>
+                    <Button className={'authbtn'} color="primary" onClick={this._forgot}>Reset Password</Button>
+                        <div>Remembered your password? Please <Link to={'login'}>Login.</Link></div>
+                      <Link to={'#'} onClick={() => this._changeRender(true)}>Have a code?</Link>
+                </Container>
             </Fragment>
-        );
-    }
 
-    _renderCode() {
-        const {code, password} = this.state;
-
-        return (
-            <Fragment>
-                <FormGroup>
-                    <Label for="exampleCode">Code</Label>
-                    <Input type="text" name="code" id="exampleCode" value={code} onChange={this._onChange}/>
-                </FormGroup>
-                <FormGroup>
-                    <Label for="examplePassword">Password</Label>
-                    <Input type="password" name="password" id="examplePassword" value={password}
-                           onChange={this._onChange}/>
-                </FormGroup>
-                <Button color="primary" onClick={this._change}>Change Password</Button>
-                <Link to={'login'}>Login</Link>
-            </Fragment>
         );
     }
 
@@ -95,11 +80,35 @@ export default class Forgot extends Component {
         const {showCode} = this.state;
 
         return (
-            <div className={'card'}>
+            <div>
                 {!showCode && this._renderMain()}
                 {showCode && this._renderCode()}
             </div>
         )
+    }
+
+    _renderCode() {
+        const {code, password} = this.state;
+
+        return (
+            <Fragment>
+                <Container className={'changepas'}>
+                    <h2>Reset Password</h2>
+                        <FormGroup>
+                            <Label for="exampleCode">Please enter your code</Label>
+                            <Input type="text" name="code" id="exampleCode" placeholder="Code" value={code} onChange={this._onChange}/>
+                        </FormGroup>
+                        <FormGroup>
+                            <Label for="examplePassword">New password</Label>
+                            <Input type="password" name="password" id="examplePassword" placeholder="Password" value={password}
+                                   onChange={this._onChange}/>
+                        </FormGroup>
+                        <Button className={'authbtn'} color="primary" onClick={this._change}>Change Password</Button>
+                    <div>Remembered your password? Please <Link to={'login'}>Login.</Link></div>
+                </Container>
+            </Fragment>
+
+    );
     }
 }
 
@@ -109,7 +118,7 @@ export default class Forgot extends Component {
 // import {Button,Container,FormGroup,Form,Label,Input} from 'reactstrap';
 // import '../../css/Auth.css';
 //
-// export default class Forgot extends Component {
+// export default class ForgotPassword extends Component {
 //     state = {
 //         email: ''
 //     };
@@ -144,7 +153,7 @@ export default class Forgot extends Component {
 //             <Container className={'cont'}>
 //                 <div>
 //                     <Form>
-//                         <h2>Forgot Password</h2>
+//                         <h2>ForgotPassword Password</h2>
 //                         <FormGroup>
 //                             <Label for="email">Please enter your email and we will send you a code to reset your password.</Label>
 //                             <Input type={'text'} name={'email'} value={email} placeholder="Email" onChange={this._onChange}/>

@@ -7,21 +7,22 @@ import {
     NavbarBrand,
     Nav,
     NavItem,
+    Button,
    } from 'reactstrap';
 
 
 export default class Header extends Component {
-    state = {
+     state = {
         redirect: false
-    };
+};
 
     _logout = () => {
         sessionStorage.removeItem('token');
-
         this.setState({
             redirect: true
         });
     };
+
     constructor(props) {
         super(props);
 
@@ -61,7 +62,7 @@ export default class Header extends Component {
                                     <Link to={"tasks"}>Tasks</Link>
                                 </NavItem>
                                 <NavItem className={'menu-item'}>
-                                    <Link onClick={this._logout} to={""}>Logout</Link>
+                                    <Button className={'logout'} color={'danger'} onClick={this._logout}>Logout</Button>
                                 </NavItem>
                             </Nav>
                         </Collapse>

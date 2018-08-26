@@ -5,7 +5,7 @@
 .table-header div {
     color: #333;
     font-size: 17px;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
 }
 
 .table-column {
@@ -17,5 +17,5 @@
 }
 
 .pagebtn{
-    margin-top: 20px;
+    margin-top: 10px;
 }

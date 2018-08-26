@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Layout from "../Misc/Layout";
 import axios from "axios";
 import {ModalFooter, Button, Modal, ModalHeader, ModalBody, FormGroup, Form, Label, Input, Col, Row} from 'reactstrap';
-
+import {Pagination, PaginationItem, PaginationLink} from 'reactstrap';
 import '../../css/tasks.css';
 
 export default class Tasks extends Component {
@@ -35,22 +35,24 @@ export default class Tasks extends Component {
     }
 
     _loadNextTasks = async () => {
-        const {page} = this.state;
+        const {page, tasks} = this.state;
 
-        let response = await axios.get(process.env.REACT_APP_API_URL + `tasks?page=${(page + 1)}`);
-
-        this.setState({
-            tasks: {
-                ...response.data.data, data: [
-                    ...response.data.data.data
-                ]
-            },
-            page: response.data.data.current_page
-        });
+        if (tasks.current_page < tasks.last_page) {
+            let response = await axios.get(process.env.REACT_APP_API_URL + `tasks?page=${(page + 1)}`);
+            this.setState({
+                tasks: {
+                    ...response.data.data, data: [
+                        ...response.data.data.data
+                    ]
+                },
+                page: response.data.data.current_page
+            });
+        }
     };
 
-    _loadPreviousTasks = async () =>{
+    _loadPreviousTasks = async () => {
         const {page} = this.state;
+
 
         let response = await axios.get(process.env.REACT_APP_API_URL + `tasks?page=${(page - 1)}`);
 
@@ -136,6 +138,16 @@ export default class Tasks extends Component {
         }
     };
 
+    _deleteTask = async id => {
+        let res = await axios.delete(process.env.REACT_APP_API_URL + `task/${id}`);
+
+        if (res && res.data && res.data.responseType === 'success') {
+            this.setState({
+                shouldRerender: true
+            });
+        }
+    };
+
     _showUser = user_id => {
         const {users} = this.state;
 
@@ -198,7 +210,7 @@ export default class Tasks extends Component {
                         <Button color="secondary" onClick={this._toggle}>Cancel</Button>
                     </ModalFooter>
                 </Modal>
-                <Button className={'add-new'} color="primary" onClick={this._add}>Add task</Button>
+                <Button className={'addbtn'} color="primary" onClick={this._add}>Add task</Button>
                 <div className={'tasks-list'}>
                     <Row className={'table-header'}>
                         <Col xs={1}>Id</Col>
@@ -217,14 +229,27 @@ export default class Tasks extends Component {
                             <Col xs={2}>{this._showUser(task.assign)}</Col>
                             <Col xs={2}>
                                 <Button color="success" size="sm" onClick={() => this._edit(task)}>Edit</Button>
-                                <Button color="danger" size="sm" onClick={() => this._edit(task)}>Delete</Button>
+                                <Button color="danger" size="sm"
+                                        onClick={() => this._deleteTask(task.id)}>Delete</Button>
                             </Col>
 
                         </Row>;
                     })}
                 </div>
-                {tasks.current_page > 1 && <div onClick={this._loadPreviousTasks}>Previous Page</div>}
-                {tasks.current_page < tasks.last_page && <div onClick={this._loadNextTasks}>Next Page</div>}
+
+                <Pagination className={'pagebtn'} aria-label="Page navigation example">
+                    <PaginationItem onClick={this._loadPreviousTasks}>
+                        <PaginationLink previous/>
+                    </PaginationItem>
+                    <PaginationItem>
+                        <PaginationLink href="#">
+                            <div>{tasks.current_page}</div>
+                        </PaginationLink>
+                    </PaginationItem>
+                    <PaginationItem onClick={this._loadNextTasks}>
+                        <PaginationLink next/>
+                    </PaginationItem>
+                </Pagination>
             </Layout>
         );
     }

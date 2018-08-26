@@ -38,5 +38,10 @@
 .menu-item a:hover, .menu-item a:active, .menu-item a:visited {
   text-decoration: none;
   color: white;
-  background: #0069d9;
+  background: white;
+}
+
+.menu-item a:hover{
+  color: black;
+  background: white;
 }

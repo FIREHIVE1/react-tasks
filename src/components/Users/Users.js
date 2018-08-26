@@ -95,9 +95,15 @@ export default class Users extends Component {
         });
      };
 
-    _updateRender = () =>{
-        this.setState({shouldRerender: true});
-    }
+    _delete = async id => {
+        let res = await axios.delete(process.env.REACT_APP_API_URL + `admin/user/${id}`);
+
+        if (res && res.data && res.data.responseType === 'success') {
+            this.setState({
+                shouldRerender: true
+            });
+        }
+    };
 
     render() {
         const {users, id} = this.state;
@@ -166,7 +172,7 @@ export default class Users extends Component {
                 </Row>
                 <div className={'users-list'}>
                     {users && users.map((user, key) => {
-                        return <UserRow key={key} user={user} edit={this._edit} rerender={this._updateRender}/>
+                        return <UserRow key={key} user={user} edit={this._edit} onDelete={this._delete}/>
                     })}
                 </div>
             </Layout>

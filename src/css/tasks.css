@@ -4,14 +4,18 @@
 
 .table-header div {
     color: #333;
-    font-size: 14px;
+    font-size: 17px;
     margin-bottom: 5px;
 }
 
 .table-column {
-    padding: 3px 0;
+    padding: 2px 0;
 }
 
 .table-column.odd {
     background: #d1d1d1;
+}
+
+.pagebtn{
+    margin-top: 20px;
 }
